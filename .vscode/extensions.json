@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    // --- Vue.js / Frontend Essentials ---
+    "Vue.volar",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint", // <-- ADDED
+    "EditorConfig.EditorConfig", // <-- ADDED
+
+    // --- Python / Django Essentials ---
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "ms-python.django",
+
+    // --- General Productivity ---
+    "eamodio.gitlens"
+  ]
+}

@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- GLOBAL STYLES --- */
+
+/* Prevent image selection/dragging */
+img {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+/*
+  ======================================================================
+  GLOBAL INVISIBLE SCROLLBAR
+  This applies to all scrollable elements in the application.
+  ======================================================================
+*/
+
+/* Hides scrollbar for Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* Hides scrollbar for Webkit-based browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}

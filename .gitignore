@@ -116,3 +116,28 @@ logs
 
 # Ignore local media files for seeding to keep repo size small
 /seed_media/
+
+
+
+
+
+
+
+
+
+
+
+
+.env
+*.env
+__pycache__/
+node_modules/
+venv/
+.env.*
+*.log
+dist/
+build/
+.media/
+staticfiles/
+docker-data/
+

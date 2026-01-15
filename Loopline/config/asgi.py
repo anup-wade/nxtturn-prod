@@ -4,7 +4,8 @@ import os
 from django.core.asgi import get_asgi_application
 
 # This MUST be the first thing Django-related that happens.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+#os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.prod")
 
 # This line fully initializes the Django application, loads settings, etc.
 django_asgi_app = get_asgi_application()

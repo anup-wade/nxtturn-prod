@@ -1,1 +1,56 @@
 # STAGE compose placeholder
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: nxtturn_stage_db
+    restart: always
+    env_file:
+      - .env.stage
+    volumes:
+      - stage_postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: nxtturn_stage_redis
+    restart: always
+
+  backend:
+    container_name: nxtturn_stage_backend
+    build:
+      context: ../../Loopline
+    working_dir: /app
+    command: >
+      sh -c "
+      python manage.py migrate &&
+      python manage.py collectstatic --noinput &&
+      exec daphne -b 0.0.0.0 -p 8000 config.asgi:application
+      "
+    restart: always
+    env_file:
+      - .env.stage
+    depends_on:
+      - db
+      - redis
+    expose:
+      - "8000"
+    volumes:
+      - stage_static_volume:/app/staticfiles
+
+  nginx:
+    image: nginx:alpine
+    container_name: nxtturn_stage_nginx
+    restart: always
+    ports:
+      - "9000:80"   # 👈 STAGE ONLY (NOT 80/443)
+    volumes:
+      - ../../nginx/stage.conf:/etc/nginx/conf.d/default.conf:ro
+      - stage_static_volume:/app/staticfiles
+    depends_on:
+      - backend
+
+volumes:
+  stage_postgres_data:
+  stage_static_volume:
+# STAGE compose placeholder
